@@ -3,27 +3,33 @@ permissions:
   id-token: write
   contents: read
   pull-requests: write
-
 on:
   workflow_call:
-    secrets:
+    inputs:
       AI_PR_ROLE_TO_ASSUME:
         required: true
+        type: string
       AI_PR_SYSTEM_MESSAGE:
         required: true
+        type: string
       AI_PR_SUMMARIZE_MESSAGE:
         required: true
+        type: string
       AI_PR_REVIEW_SIMPLE_CHANGES:
         required: true
+        type: string
       AI_PR_BEDROCK_MODEL_TEMPERATURE:
         required: true
+        type: string
       AI_PR_BEDROCK_MODEL:
         required: true
+        type: string
       AI_PR_DEBUG:
         required: true
+        type: string
       AI_PR_REVIEW_COMMENT_LGTM:
         required: true
-
+        type: string
 jobs:
   Review-Amazon-Bedrock:
     concurrency:
@@ -34,7 +40,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AI_PR_ROLE_TO_ASSUME }}
+          role-to-assume: ${{ inputs.AI_PR_ROLE_TO_ASSUME }}
           role-session-name: gha-session
           aws-region: us-east-1
 
@@ -42,15 +48,15 @@ jobs:
         uses: tmokmss/bedrock-pr-reviewer@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SYSTEM_MESSAGE: ${{ secrets.AI_PR_SYSTEM_MESSAGE }}
-          SUMMARIZE_MESSAGE: ${{ secrets.AI_PR_SUMMARIZE_MESSAGE }}
+          SYSTEM_MESSAGE: ${{ inputs.AI_PR_SYSTEM_MESSAGE }}
+          SUMMARIZE_MESSAGE: ${{ inputs.AI_PR_SUMMARIZE_MESSAGE }}
         with:
-          debug: ${{ secrets.AI_PR_DEBUG }}
-          review_simple_changes: ${{ secrets.AI_PR_REVIEW_SIMPLE_CHANGES }}
-          review_comment_lgtm: ${{ secrets.AI_PR_REVIEW_COMMENT_LGTM }}
-          bedrock_model_temperature: ${{ secrets.AI_PR_BEDROCK_MODEL_TEMPERATURE }}
-          bedrock_heavy_model: ${{ secrets.AI_PR_BEDROCK_MODEL }}
-          bedrock_light_model: ${{ secrets.AI_PR_BEDROCK_MODEL }}
+          debug: ${{ inputs.AI_PR_DEBUG }}
+          review_simple_changes: ${{ inputs.AI_PR_REVIEW_SIMPLE_CHANGES }}
+          review_comment_lgtm: ${{ inputs.AI_PR_REVIEW_COMMENT_LGTM }}
+          bedrock_model_temperature: ${{ inputs.AI_PR_BEDROCK_MODEL_TEMPERATURE }}
+          bedrock_heavy_model: ${{ inputs.AI_PR_BEDROCK_MODEL }}
+          bedrock_light_model: ${{ inputs.AI_PR_BEDROCK_MODEL }}
           bedrock_retries: 10
           language: pt-BR
           system_message: |
