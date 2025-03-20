@@ -30,6 +30,9 @@ on:
       AI_PR_REVIEW_COMMENT_LGTM:
         required: true
         type: string
+    secrets:
+      PRIVATE_ACTIONS_PAT:
+        required: false
 jobs:
   Review-Amazon-Bedrock:
     concurrency:
