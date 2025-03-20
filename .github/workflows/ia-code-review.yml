@@ -45,7 +45,7 @@ jobs:
           aws-region: us-east-1
 
       - name: PR review
-        uses: tmokmss/bedrock-pr-reviewer@main
+        uses: rodrigoasf9/bedrock-codereview@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SYSTEM_MESSAGE: ${{ inputs.AI_PR_SYSTEM_MESSAGE }}
