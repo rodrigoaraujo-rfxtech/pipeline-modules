@@ -44,8 +44,15 @@ jobs:
           role-session-name: gha-session
           aws-region: us-east-1
 
+      - name: Checkout Private Action
+        uses: actions/checkout@v3
+        with:
+          repository: rodrigoasf9/bedrock-codereview
+          ref: main
+          token: ${{ secrets.PRIVATE_ACTIONS_PAT }}
+
       - name: PR review
-        uses: rodrigoasf9/bedrock-codereview@main
+        uses: ./
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SYSTEM_MESSAGE: ${{ inputs.AI_PR_SYSTEM_MESSAGE }}
