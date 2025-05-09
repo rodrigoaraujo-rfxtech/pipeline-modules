@@ -37,6 +37,7 @@ jobs:
           bedrock_light_model: ${{ vars.AI_PR_BEDROCK_MODEL }}
           bedrock_retries: 10
           language: pt-BR
+          path_filters: "!dist/**\n!**/*.log\n!**/*.zip\n!**/*.png\n!**/*.jpg\n!**/*.svg\n!**/__pycache__/**"
           system_message: |
             ${{ env.SYSTEM_MESSAGE }}
           summarize: |
