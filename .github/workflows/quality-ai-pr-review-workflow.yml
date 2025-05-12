@@ -21,7 +21,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.AI_PR_ROLE_TO_ASSUME }}
+          role-to-assume: "arn:aws:iam::285724677469:role/GHA-ROLE-STACK-GitHubActionsServiceRole-wG9XBUbwU1YC"
           role-session-name: gha-session
           aws-region: us-east-1
 
