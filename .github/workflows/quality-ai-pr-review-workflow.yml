@@ -7,6 +7,9 @@ permissions:
 
 on:
   workflow_call:
+    secrets:
+      AI_PR_GITHUB_TOKEN:
+        required: true
 
 jobs:
   Review-Amazon-Bedrock:
