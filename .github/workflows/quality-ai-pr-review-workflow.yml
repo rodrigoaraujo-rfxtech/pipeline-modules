@@ -31,7 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.AI_PR_GITHUB_TOKEN }}
         with:
           debug: ${{ vars.AI_PR_DEBUG }}
-          review_simple_changes: ${{ vars.AI_PR_REVIEW_SIMPLE_CHANGES }}
+          review_simple_changes: true
           review_comment_lgtm: ${{ vars.AI_PR_REVIEW_COMMENT_LGTM }}
           bedrock_model_temperature: ${{ vars.AI_PR_BEDROCK_MODEL_TEMPERATURE }}
           bedrock_heavy_model: ${{ vars.AI_PR_BEDROCK_MODEL }}
