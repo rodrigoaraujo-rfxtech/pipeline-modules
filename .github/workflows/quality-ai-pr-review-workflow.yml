@@ -23,9 +23,10 @@ jobs:
           aws-region: us-east-1
 
       - name: PR review
-        uses: tmokmss/bedrock-pr-reviewer@main 
+        uses: tmokmss/bedrock-pr-reviewer@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.AI_PR_GITHUB_TOKEN }}
         with:
-          github_token: ${{ secrets.AI_PR_GITHUB_TOKEN }}
           debug: ${{ vars.AI_PR_DEBUG }}
           review_simple_changes: ${{ vars.AI_PR_REVIEW_SIMPLE_CHANGES }}
           review_comment_lgtm: ${{ vars.AI_PR_REVIEW_COMMENT_LGTM }}
