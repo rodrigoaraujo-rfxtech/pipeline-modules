@@ -23,7 +23,7 @@ jobs:
         with:
           role-to-assume: "arn:aws:iam::053005455791:role/GHA-ROLE-STACK-GitHubActionsServiceRole-woHs1ZZI7HLY"
           role-session-name: gha-session
-          aws-region: us-east-1
+          aws-region: us-east-2
 
       - name: PR review
         uses: tmokmss/bedrock-pr-reviewer@main
