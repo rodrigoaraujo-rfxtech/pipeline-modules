@@ -25,10 +25,8 @@ jobs:
       - name: PR review
         uses: tmokmss/bedrock-pr-reviewer@main
         env:         
-          SYSTEM_MESSAGE: ${{ vars.AI_PR_SYSTEM_MESSAGE }}
-          SUMMARIZE_MESSAGE: ${{ vars.AI_PR_SUMMARIZE_MESSAGE }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           debug: ${{ vars.AI_PR_DEBUG }}
           review_simple_changes: ${{ vars.AI_PR_REVIEW_SIMPLE_CHANGES }}
           review_comment_lgtm: ${{ vars.AI_PR_REVIEW_COMMENT_LGTM }}
@@ -37,7 +35,5 @@ jobs:
           bedrock_light_model: ${{ vars.AI_PR_BEDROCK_MODEL }}
           bedrock_retries: 10
           language: pt-BR
-          system_message: |
-            ${{ env.SYSTEM_MESSAGE }}
-          summarize: |
-            ${{ env.SUMMARIZE_MESSAGE }}
+          system_message: ${{ vars.AI_PR_SYSTEM_MESSAGE }}
+          summarize: ${{ vars.AI_PR_SUMMARIZE_MESSAGE }}
